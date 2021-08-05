@@ -34,17 +34,17 @@ class ApplicationState extends ChangeNotifier {
           if (snapshot.data()!.containsKey('issues')) {
             for (var item in snapshot.get('issues')) {
               //Checks if values are null, if null just prints error but adds remaining full items
-              try{
-              _issueList.add(
-                IssueModel(
-                    title: item['title'],
-                    description: item['description'],
-                    label: item['label'],
-                    projects: item['projects'],
-                    issueId: item['issueId'],
-                    isComplete: item['isComplete']),
-              );
-              }catch(e) {
+              try {
+                _issueList.add(
+                  IssueModel(
+                      title: item['title'],
+                      description: item['description'],
+                      label: item['label'],
+                      projects: item['projects'],
+                      issueId: item['issueId'],
+                      isComplete: item['isComplete']),
+                );
+              } catch (e) {
                 print("Error: $e");
               }
             }
@@ -153,13 +153,13 @@ class ApplicationState extends ChangeNotifier {
       issueList.forEach((model) {
         list.add(model.toJson());
       });
-      
+
       var userRef =
           FirebaseFirestore.instance.collection('Users').doc(user?.uid);
       await userRef.set({
         'issues': FieldValue.arrayUnion(list),
       });
-    }catch (e) {
+    } catch (e) {
       print('Error in updateIsComplete @auth_provider: ${e.toString()}');
     }
   }
@@ -213,5 +213,6 @@ class ApplicationState extends ChangeNotifier {
     } on FirebaseException catch (e) {
       print(e.toString());
     }
+    notifyListeners();
   }
 }

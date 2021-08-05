@@ -31,6 +31,7 @@ class HomePage extends StatelessWidget {
               viewIssues: appState.viewIssues,
               createNewIssue: appState.createNewIssue,
               updateIsComplete: appState.updateIsComplete,
+              deleteIssue: appState.deleteIssue,
               ),
         ),
     );

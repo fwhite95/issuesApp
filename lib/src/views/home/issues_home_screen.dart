@@ -8,6 +8,7 @@ class IssuesHomeScreen extends StatefulWidget {
     required this.issuesList,
     required this.createNewIssue,
     required this.updateIsComplete,
+    required this.deleteIssue,
   });
 
   final void Function() signOut;
@@ -16,6 +17,7 @@ class IssuesHomeScreen extends StatefulWidget {
   final void Function() createNewIssue;
   final void Function(bool isComplete, int index) updateIsComplete;
   final List<IssueModel> issuesList;
+  final void Function(IssueModel issue) deleteIssue;
 
   @override
   _IssuesHomeScreenState createState() => _IssuesHomeScreenState();
@@ -114,6 +116,8 @@ class _IssuesHomeScreenState extends State<IssuesHomeScreen> {
                     isComplete: widget.issuesList[index].isComplete,
                     index: index,
                     updateIsComplete: widget.updateIsComplete,
+                    deleteIssue: widget.deleteIssue,
+                    issueModel: widget.issuesList[index],
                   );
                 },
               ),

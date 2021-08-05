@@ -34,6 +34,7 @@ class Authentication extends StatelessWidget {
     required this.viewIssues,
     required this.createNewIssue,
     required this.updateIsComplete,
+    required this.deleteIssue,
   });
 
   final ApplicationLoginState loginState;
@@ -62,6 +63,7 @@ class Authentication extends StatelessWidget {
     IssueModel issue,
   ) createNewIssue;
   final void Function(bool isComplete, int index) updateIsComplete;
+  final void Function(IssueModel issue) deleteIssue;
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +105,7 @@ class Authentication extends StatelessWidget {
           issuesList: issuesList,
           createNewIssue: startCreateNewIssue,
           updateIsComplete: updateIsComplete,
+          deleteIssue: deleteIssue,
         );
       case ApplicationLoginState.newIssue:
         return NewIssuesScreen(
